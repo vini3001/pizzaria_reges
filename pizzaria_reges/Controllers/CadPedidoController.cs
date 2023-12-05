@@ -77,8 +77,10 @@ namespace pizzaria_reges.Controllers
             var findProduto = await _context.Produto.SingleOrDefaultAsync(cart => cart.Id == produtoId);
 
             Random random = new Random();
-            TimeZoneInfo localTimeZone = TimeZoneInfo.Local;
-            DateTime dataHoraLocal = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, localTimeZone);
+            // Use o identificador de fuso horário do Brasil
+            string brazilTimeZoneId = "E. South America Standard Time";
+            TimeZoneInfo brazilTimeZone = TimeZoneInfo.FindSystemTimeZoneById(brazilTimeZoneId);
+            DateTime dataHoraLocal = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, brazilTimeZone);
 
             try
             {
@@ -248,7 +250,7 @@ namespace pizzaria_reges.Controllers
 
             TempData["Message"] = $"Pedido de número {pedido.Id} foi removido!";
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index), new {id});
         }
     }
 }
