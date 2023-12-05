@@ -20,8 +20,10 @@ namespace pizzaria_reges.Controllers
 
         public IActionResult Create()
         {
-            TimeZoneInfo localTimeZone = TimeZoneInfo.Local;
-            DateTime dataHoraLocal = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, localTimeZone);
+            // Use o identificador de fuso horário do Brasil
+            string brazilTimeZoneId = "E. South America Standard Time";
+            TimeZoneInfo brazilTimeZone = TimeZoneInfo.FindSystemTimeZoneById(brazilTimeZoneId);
+            DateTime dataHoraLocal = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, brazilTimeZone);
 
             Produto modelo = new Produto
             {
@@ -35,8 +37,10 @@ namespace pizzaria_reges.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Produto produto)
         {
-            TimeZoneInfo localTimeZone = TimeZoneInfo.Local;
-            DateTime dataHoraLocal = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, localTimeZone);
+            // Use o identificador de fuso horário do Brasil
+            string brazilTimeZoneId = "E. South America Standard Time";
+            TimeZoneInfo brazilTimeZone = TimeZoneInfo.FindSystemTimeZoneById(brazilTimeZoneId);
+            DateTime dataHoraLocal = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, brazilTimeZone);
 
             if (ModelState.IsValid)
             {
