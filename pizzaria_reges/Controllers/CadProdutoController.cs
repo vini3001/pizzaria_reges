@@ -35,11 +35,14 @@ namespace pizzaria_reges.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Produto produto)
         {
+            TimeZoneInfo localTimeZone = TimeZoneInfo.Local;
+            DateTime dataHoraLocal = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, localTimeZone);
 
             if (ModelState.IsValid)
             {
                 try
                 {
+                    produto.dataCadastro = dataHoraLocal;
                     _context.Add(produto);
                     await _context.SaveChangesAsync();
                 }

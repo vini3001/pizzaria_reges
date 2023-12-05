@@ -54,20 +54,5 @@ namespace pizzaria_reges.Controllers
 
             return View();
         }
-
-        public async void Edit(long itemId, CarrinhoCompra carrinhoCompra)
-        {
-            //try { 
-            //    var findCarrinho = await _context.CarrinhoCompra.SingleOrDefaultAsync(i => i.Id == carrinhoCompra.Id);
-
-            //    findCarrinho.Quantidade = carrinhoCompra.Quantidade;
-            //    await _context.SaveChangesAsync();
-
-
-            //} catch(DbUpdateException)
-            //{
-            //   ModelState.AddModelError("Erro", "Não foi possível inserir os dados");
-            //}
-        }
     }
 }
