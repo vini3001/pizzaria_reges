@@ -1,0 +1,120 @@
+﻿@model pizzaria_reges.Data.ViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@section styles{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.4/js/bootstrap.min.js"></script>
+    }
+
+<div style="justify-items:center">
+    <h4>Cadastro</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <button type="button" class="btn btn-secondary" data-target="#meuModal" data-toggle="modal">Adicionar Endereço</button>
+            <form asp-action="Create" class="row g-3">
+                <div class="form-group">
+                    <label asp-for="cliente.Nome" class="form-label">Nome</label>
+                    <input asp-for="cliente.Nome" type="text" class="form-control" id="inputName">
+                    <span asp-validation-for="cliente.Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="cliente.Senha" class="form-label">Senha</label>
+                    <input asp-for="cliente.Senha" type="password" class="form-control" id="inputPassword4">
+                    <span asp-validation-for="cliente.Senha" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="cliente.Telefone" class="form-label">Telefone</label>
+                    <input asp-for="cliente.Telefone" type="number" class="form-control" id="inputPhone4">
+                    <span asp-validation-for="cliente.Telefone" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="cliente.cpf" class="form-label">cpf</label>
+                    <input asp-for="cliente.cpf" type="text" class="form-control" id="inputPassword4">
+                    <span asp-validation-for="cliente.cpf" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="cliente.data_nasc" class="form-label">Data de Nascimento</label>
+                    <input asp-for="cliente.data_nasc" type="text" class="form-control" id="inputPassword4">
+                    <span asp-validation-for="cliente.data_nasc" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="cliente.email" class="form-label">Email</label>
+                    <input asp-for=cliente.email type="email" class="form-control" id="inputEmail4">
+                    <span asp-validation-for="cliente.email" class="text-danger"></span>
+                </div>
+                @if (Model != null && Model.cliente != null)
+                {
+                    <div class="form-group">
+                        <input type="number" asp-for="cliente.fk_EnderecoID" value="@Model.cliente.fk_EnderecoID" hidden="true" required="true"/>
+                        <span asp-validation-for="cliente.fk_EnderecoID" class="text-danger"></span>
+                    </div>
+                }
+
+                <div class="col-12">
+                    <button type="submit" value="Criar" class="btn btn-primary">Concluir</button>
+                    <a asp-action="Index" asp-controller="HomePage" class="btn btn-secondary">Voltar</a>
+                </div>
+            </form>
+        </div>
+        </div>
+
+    <div class="modal fade" id="meuModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModal">Endereço</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form asp-controller="CadEndereco" asp-action="Create" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="endereco.Rua" class="control-label"></label>
+                            <input asp-for="endereco.Rua" class="form-control" />
+                            <span asp-validation-for="endereco.Rua" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="endereco.Numero" class="control-label"></label>
+                            <input asp-for="endereco.Numero" class="form-control" />
+                            <span asp-validation-for="endereco.Numero" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="endereco.Cep" class="control-label"></label>
+                            <input asp-for="endereco.Cep" class="form-control" />
+                            <span asp-validation-for="endereco.Cep" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="endereco.Cidade" class="control-label"></label>
+                            <input asp-for="endereco.Cidade" class="form-control" />
+                            <span asp-validation-for="endereco.Cidade" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="endereco.Estado" class="control-label"></label>
+                            <input asp-for="endereco.Estado" class="form-control" />
+                            <span asp-validation-for="endereco.Estado" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+
+        <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"></script>
+    }
+</div>

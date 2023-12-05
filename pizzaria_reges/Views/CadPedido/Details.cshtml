@@ -1,0 +1,47 @@
+﻿@model pizzaria_reges.Data.ViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalhes do pedido</h1>
+
+<div>
+    <h4>Pedido</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.pedido.Numero)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.pedido.Numero)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.pedido.Quantidade)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.pedido.Quantidade)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.pedido.ValorTotal)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.pedido.ValorTotal)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.pedido.PedidoData)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.pedido.PedidoData)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.cliente.Nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.cliente.Nome)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index" asp-route-id="@Model.pedido.fk_ClienteID" class="btn btn-secondary">Voltar</a>
+</div>

@@ -1,0 +1,49 @@
+﻿@model pizzaria_reges.Data.ViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@* <h1>Create</h1>
+
+<h4>CarrinhoCompra</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+            <h3>Detalhes</h3>
+        @{
+            if(ViewBag != null)
+            {
+                <div class="form-group">
+                    <label class="control-label">Pizza escolhida</label>
+                    <input value=" @ViewBag?.pizza.Nome" class="form-control" disabled="true">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Preço</label>
+                    <input value="@ViewBag?.pizza.Preco" class="form-control" disabled="true">
+                </div>
+            }
+        }
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="carrinho.Quantidade" class="control-label">Quantas serão?</label>
+                <input id="carrinho_Quantidade" asp-for="carrinho.Quantidade" class="form-control" />
+                <span asp-validation-for="carrinho.Quantidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="carrinho.fk_ProdutoID" class="form-control" value="@Model?.produto.Id" hidden="true">
+            </div>
+            <div class="form-group">
+                <input asp-for="carrinho.fk_PedidoID" class="form-control" value="@Model?.pedido.Id" hidden="true">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div> *@

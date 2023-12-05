@@ -1,0 +1,101 @@
+﻿@model pizzaria_reges.Data.ViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-warning" role="alert">
+        @TempData["Message"]
+    </div>
+}
+<main role="main">
+    <section class="text-center" style="margin-top: 30px">
+        <div class="container">
+            <h1 class="heading">Bem vindo à Pizzaria Reges</h1>
+            <p class="lead text-muted">
+                Aqui você encontra as melhores pizzas da região! <br />
+                Venha conferir!!!
+            </p>
+        </div>
+    </section>
+
+    <div class="text-center" style="padding: 10px">
+        <form asp-controller="CadPedido" asp-action="Create" method="post" asp-route-id="@Model?.cliente.Id">
+            <a asp-controller="CadCliente">Cadastre-se</a>
+            <a href="#" data-toggle="modal" style="padding-left: 5px" data-target="#modalLogin">Login</a>
+        </form>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                    <div class="row">
+                        @foreach (var item in ViewBag.pizzas)
+                        {
+                            <div class="col-md-4">
+                                <div class="card mb-4 box-shadow" style="border-radius: 7px">
+                                    <img class="card-img-top" src="@item.urlImg" alt="Imagem" />
+                                        <div>
+                                            <div class="card-body bg-secondary text-white" style="border-radius: 0px 0px 7px 7px">
+                                            <div style="font-weight: bold; border-radius: 7px 7px 7px 7px">
+                                                    @item.Nome
+                                                </div>
+
+                                                <div style="padding: 5px">
+                                                    <p>@item.descricao</p>
+                                                </div>
+                                                <form asp-controller="CadPedido" asp-action="Create" method="get" asp-route-id="@Model?.cliente.Id">
+                                                    <input type="hidden" name="produtoId" value="@item.Id" />
+                                                    <button type="submit" class="btn btn-primary">Fazer pedido</button> <br />
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModal">Login de usuário</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="CadCliente" asp-action="LoginUsuario" method="post">
+                    <div class="form-group">
+                        <label asp-for="cliente.email" class="form-label">Email</label>
+                        <input asp-for=cliente.email type="email" class="form-control" id="inputEmail4">
+                        <span asp-validation-for="cliente.email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="cliente.Senha" class="form-label">Senha</label>
+                        <input asp-for="cliente.Senha" type="password" class="form-control" id="inputPassword4">
+                        <span asp-validation-for="cliente.Senha" class="text-danger"></span>
+                    </div>
+                    <div style="padding: 10px">
+                        <input type="submit" value="Fazer login" class="btn btn-primary" />
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"></script>
+    }

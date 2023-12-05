@@ -1,0 +1,44 @@
+﻿@model IEnumerable<pizzaria_reges.Models.Produto>
+
+<table class="table">
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-warning" role="alert">
+            @TempData["Message"]
+        </div>
+    }
+    <h1>Seus produto</h1>
+    <thead>
+        <a type="button" class="btn btn-success" asp-action="Create">Cadastrar produto</a>
+        <dl>
+    <th>
+         Nome da pizza
+    </th>
+    <th>
+        Data de cadastro
+    </th>
+    <dl>
+    <th>
+        Ações
+    </th>
+    <dl>
+        </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dataCadastro)
+                </td>
+                <td>
+                    <a type="button" class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    <a type="button" class="btn btn-primary" data-target="#ShowDetails" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                    <a type="button" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

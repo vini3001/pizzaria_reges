@@ -1,0 +1,55 @@
+﻿@model pizzaria_reges.Models.Pedido
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h4>Informações do pedido</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            @if (ViewBag.produto != null)
+            {
+                <label class="control-label">Pizza escolhida</label>
+                <input class="form-control" value="@ViewBag.produto.Nome" disabled="true" />
+                <label class="control-label">Preço</label>
+                <input class="form-control" value="@ViewBag.produto.Preco" disabled="true" />
+            }
+            <div class="form-group">
+                <label asp-for="Numero" class="control-label">Código do pedido</label>
+                <input asp-for="Numero" class="form-control" />
+                <span asp-validation-for="Numero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantidade" class="control-label"></label>
+                <input asp-for="Quantidade" class="form-control" />
+                <span asp-validation-for="Quantidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValorTotal" class="control-label"></label>
+                <input asp-for="ValorTotal" class="form-control" />
+                <span asp-validation-for="ValorTotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PedidoData" class="control-label"></label>
+                <input asp-for="PedidoData" class="form-control" />
+                <span asp-validation-for="PedidoData" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fk_ClienteID" class="control-label">Cliente</label>
+                <select asp-for="fk_ClienteID" class="form-control"
+                        asp-items=@ViewBag.clientes>
+                </select>
+                <span asp-validation-for="fk_ClienteID" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="padding: 5px">
+                <input type="submit" value="Editar" class="btn btn-primary" />
+                <a asp-action="Index" asp-route-id="@Model.fk_ClienteID" class="btn btn-secondary">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
